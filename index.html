@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walentynka 💖</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            transition: 0.5s;
+        }
+        h1 {
+            color: #ff4081;
+            text-shadow: 0px 0px 10px #ff4081;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0px 0px 10px #ff4081; }
+            to { text-shadow: 0px 0px 20px #ff79a1; }
+        }
+        #pytanie {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .przycisk {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        #tak {
+            background-color: #ff4081;
+            color: white;
+        }
+        #tak:hover {
+            background-color: #e91e63;
+        }
+        #nie {
+            background-color: #b0bec5;
+            color: black;
+            position: relative;
+        }
+        #nie:hover {
+            background-color: #78909c;
+        }
+        #obrazek {
+            width: 300px;
+            margin-top: 20px;
+            display: none;
+            border-radius: 15px;
+        }
+        #napis {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff4081;
+            display: none;
+            text-shadow: 0px 0px 10px #ff4081;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>💘 Czy będziesz moją walentynką? 💘</h1>
+    <p id="pytanie">Wybierz mądrze!</p>
+    <button id="tak" class="przycisk" onclick="wybranoTak()">Tak</button>
+    <button id="nie" class="przycisk" onclick="wybranoNie()" onmouseover="uciekaj()">Nie</button>
+
+    <img id="obrazek" src="" alt="Obrazek">
+    <p id="napis"></p>
+
+    <script>
+        let licznikNie = 0;
+        
+        function wybranoTak() {
+            document.getElementById("obrazek").src = "walentynki2.jpg"; // Kotki
+            document.getElementById("napis").innerText = "Najlepsza decyzja! ❤️";
+            document.getElementById("obrazek").style.display = "block";
+            document.getElementById("napis").style.display = "block";
+            document.getElementById("pytanie").style.display = "none";
+            document.getElementById("tak").style.display = "none";
+            document.getElementById("nie").style.display = "none";
+        }
+
+        function wybranoNie() {
+            if (licznikNie === 0) {
+                document.getElementById("obrazek").src = "walentynki1.jpg"; // Chomik
+                document.getElementById("napis").innerText = "Proszę 🙏";
+                document.getElementById("obrazek").style.display = "block";
+                document.getElementById("napis").style.display = "block";
+                licznikNie++;
+            }
+        }
+
+        function uciekaj() {
+            if (licznikNie > 0) {
+                let nie = document.getElementById("nie");
+                let maxX = window.innerWidth - nie.clientWidth;
+                let maxY = window.innerHeight - nie.clientHeight;
+                let x = Math.random() * maxX;
+                let y = Math.random() * maxY;
+                nie.style.position = "absolute";
+                nie.style.left = x + "px";
+                nie.style.top = y + "px";
+            }
+        }
+    </script>
+
+</body>
+</html>
